@@ -59,13 +59,13 @@
                 var svgstr = ImageTracer.imagedataToSVG( imgd, { scale:1 } );
 //                console.log(typeof svgstr);
                 var htmlObject = $(svgstr);
-                console.log(htmlObject[0].querySelectorAll("path")[1].getAttribute("fill"));
+//                console.log(htmlObject[0].querySelectorAll("path")[1].getAttribute("fill"));
                 svgColor = htmlObject[0].querySelectorAll("path")[1].getAttribute("fill");
                 imageToSvg = htmlObject[0].querySelectorAll("path")[1].getAttribute("d");
 //                console.log(htmlObject[0].querySelectorAll("path")[1]);
 //                console.log(htmlObject[0].querySelectorAll("path")[1].getAttribute("d"));
 //                console.log(imageToSvg);
-                console.log(imageToSvg);
+//                console.log(imageToSvg);
 
                 // Appending SVG
                 ImageTracer.appendSVGString( svgstr, 'svgcontainer' );
