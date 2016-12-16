@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+<body onload="init()">
+<canvas id="myCanvas"></canvas>
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    context.canvas.width = window.innerWidth;
+    context.canvas.height = window.innerHeight;
+
+    var easing = 0.05;
+    var boxSize = 150;
+    var init_x= canvas.width/2-boxSize/2;
+    var init_y= canvas.height/2-boxSize/2;
+
+
+
+
+    var Box = function (x, y, w, h, xf, yf) {
+        this.x= x;
+        this.y= y;
+        this.w= w;
+        this.h= h;
+        this.xf= xf;
+        this.yf= yf;
+    };
+    var boxArray =[];
+
+
+
+
+
+    function drawRectangle() {
+        for(var i=0; i< boxArray.length; i++){
+            var dx = boxArray[i].xf - boxArray[i].x;
+            var dy = boxArray[i].yf - boxArray[i].y;
+            boxArray[i].x += dx * easing;
+            boxArray[i].y += dy * easing;
+
+
+            context.beginPath();
+            context.rect(boxArray[i].x, boxArray[i].y, boxArray[i].w, boxArray[i].h);
+            context.fillStyle = '#222222';
+            context.fill();
+        }
+
+
+
+    }
+    function animate() {
+
+
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawRectangle();
+
+
+
+        // request new frame
+        requestAnimationFrame(animate);
+    }
+
+    function Split(){
+
+//        for(var i =0; i<10;i++){
+//            var randomN = Math.floor(Math.random()*2);
+//            console.log(randomN);
+//        }
+//        var pat = 0;
+        console.log("length is "+boxArray.length);
+        var n_box_x, n_box_y ,n_box_w, n_box_h, n_box_xf, n_box_yf;
+
+        var pat;
+        for(pat in boxArray) {
+            var randomN = Math.floor(Math.random()*2);
+            if (randomN == 0) {
+                var dW = Math.floor(Math.random() * boxArray[pat].w * 0.9 + boxArray[pat].w * 0.1);
+                var moveW= Math.floor(Math.random() * boxArray[pat].w);
+                n_box_x = boxArray[pat].x + dW;
+                n_box_y = boxArray[pat].y;
+                n_box_w = boxArray[pat].w - dW;
+                n_box_h = boxArray[pat].h;
+                n_box_xf = boxArray[pat].xf + dW + moveW;
+                n_box_yf = boxArray[pat].yf;
+                boxArray[pat].w = dW;
+                boxArray[pat].xf = boxArray[pat].xf - moveW;
+                boxArray.push(new Box(n_box_x, n_box_y, n_box_w, n_box_h, n_box_xf, n_box_yf));
+            } else {
+                var dH = Math.floor(Math.random() * boxArray[pat].h * 0.9 + boxArray[pat].h * 0.1);
+                var moveH = Math.floor(Math.random() * boxArray[pat].h);
+                n_box_x = boxArray[pat].x;
+                n_box_y = boxArray[pat].y + dH;
+                n_box_w = boxArray[pat].w;
+                n_box_h = boxArray[pat].h - dH;
+                n_box_xf = boxArray[pat].xf;
+                n_box_yf = boxArray[pat].yf + dH + moveH;
+                boxArray[pat].h = dH;
+                boxArray[pat].yf = boxArray[pat].yf - moveH;
+                boxArray.push(new Box(n_box_x, n_box_y, n_box_w, n_box_h, n_box_xf, n_box_yf));
+            }
+        }
+        console.log(boxArray.length)
+
+
+    }
+
+
+
+    function init() {
+        boxArray.push(new Box(init_x, init_y, boxSize, boxSize, init_x, init_y));
+
+
+
+
+        document.addEventListener('click', Split, false);
+
+
+
+
+
+        animate();
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>
