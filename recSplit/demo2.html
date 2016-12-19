@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        button{
+            position: absolute;
+            top:5%;
+            left: 5%;
+        }
+    </style>
+</head>
+<body onload="init()">
+<canvas id="myCanvas"></canvas>
+<button onclick="Rewind()">REWIND</button>
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var cxt = canvas.getContext('2d');
+    cxt.canvas.width = window.innerWidth;
+    cxt.canvas.height = window.innerHeight;
+
+    var easing = 0.05;
+    var size = Math.floor(window.innerHeight*0.15);
+    var initX = canvas.width/2 - size/2;
+    var initY = canvas.height/2 - size/2;
+    var max=1;
+    var oneSplitCount=0;
+
+    var ref=[];
+    var boxArray=[];
+    var turnOn=false;
+
+    var Box = function(){
+        this.old = null;
+        this.num = null;
+        this.x = null;
+        this.y = null;
+        this.w = null;
+        this.h = null;
+        this.xf = null;
+        this.yf = null;
+    };
+    function init() {
+        var box0= new Box();
+        box0.old = 0;
+        box0.num = 1;
+        box0.x = initX;
+        box0.y = initY;
+        box0.w = size;
+        box0.h = size;
+        box0.xf = initX;
+        box0.yf = initY;
+        ref.push(box0.old);
+        boxArray.push(box0);
+
+        document.getElementById('myCanvas').addEventListener('click',BoxSplit , false);
+        animate();
+
+    }
+
+    function BoxSplit(){
+        turnOn=false;
+        for (var i=0; i<600; i++){
+            if(boxArray.length<2){
+                DoubleSplit();
+            }else {
+                Split();
+            }
+        }
+
+
+
+    }
+
+
+    function animate(){
+        cxt.clearRect(0, 0, canvas.width, canvas.height);
+        if(turnOn){
+            Assembly();
+            Remix();
+        }
+
+        drawRectangle();
+        requestAnimationFrame(animate);
+    }
+
+    function Assembly() {
+        for(var i =0; i<boxArray.length-1; i++){
+            if(boxArray[i].num == boxArray[i+1].num){
+                var alignX = Math.abs(boxArray[i].x-boxArray[i+1].x);
+                var alignY = Math.abs(boxArray[i].y-boxArray[i+1].y);
+                if(boxArray[i].h == boxArray[i+1].h && alignY<1){
+                    var xr=(boxArray[i].x + boxArray[i].w + boxArray[i+1].x)/2;
+                    boxArray[i].xf = xr - boxArray[i].w;
+                    boxArray[i+1].xf = xr;
+                    i++;
+                }else if(boxArray[i].w == boxArray[i+1].w && alignX<1){
+                    var yr=(boxArray[i].y + boxArray[i].h + boxArray[i+1].y)/2;
+                    boxArray[i].yf = yr - boxArray[i].h;
+                    boxArray[i+1].yf = yr;
+                    i++;
+                }
+            }
+        }
+    }
+
+    function Remix() {
+        for(var i=0; i<boxArray.length-1; i++){
+            if(boxArray[i].num == boxArray[i+1].num){
+                var dx = Math.abs(boxArray[i+1].x - boxArray[i].x - boxArray[i].w);
+                var dy = Math.abs(boxArray[i+1].y - boxArray[i].y - boxArray[i].h);
+                var alignX = Math.abs(boxArray[i].x-boxArray[i+1].x);
+                var alignY = Math.abs(boxArray[i].y-boxArray[i+1].y);
+                if(dx<1 && alignY<1){
+                    boxArray[i].w = boxArray[i].w + boxArray[i+1].w;
+                    boxArray.splice(i+1,1);
+                    boxArray[i].num = boxArray[i].old;
+                    boxArray[i].old = ref[boxArray[i].old-1];
+                }else if(dy<1 && alignX<1){
+                    boxArray[i].h = boxArray[i].h + boxArray[i+1].h;
+                    boxArray.splice(i+1,1);
+                    boxArray[i].num = boxArray[i].old;
+                    boxArray[i].old = ref[boxArray[i].old-1];
+                }
+            }
+        }
+    }
+
+
+
+
+    function drawRectangle(){
+        for(var i=0; i< boxArray.length; i++){
+            var dx = boxArray[i].xf - boxArray[i].x;
+            var dy = boxArray[i].yf - boxArray[i].y;
+            boxArray[i].x += dx * easing;
+            boxArray[i].y += dy * easing;
+
+            cxt.beginPath();
+            cxt.rect(boxArray[i].x, boxArray[i].y, boxArray[i].w, boxArray[i].h);
+            cxt.fillStyle ='#222222';
+            cxt.fill();
+        }
+    }
+
+    function Split() {
+        var choose = Math.floor(Math.random()*boxArray.length);
+        for (var i=choose;i<boxArray.length;i++){
+            var min = Math.min(boxArray[i].w, boxArray[i].h);
+            if(min>2){
+                var randomN = Math.floor(Math.random() * 2);
+                if (randomN == 0) {
+                    VerticalCut(i);
+                } else {
+                    HorizontalCut(i);
+                }
+                max++;
+                break;
+            }
+        }
+        oneSplitCount++;
+    }
+
+    function DoubleSplit() {
+        for (var i =0; i<boxArray.length; i++) {
+            var randomN = Math.floor(Math.random() * 2);
+            if (randomN == 0) {
+                VerticalCut(i);
+            } else {
+                HorizontalCut(i);
+            }
+            i++; // because of the new item [i+1]
+            max++;
+        }
+    }
+
+    function VerticalCut(i) {
+        var box1 = new Box();
+        var box2 = new Box();
+        var dW = Math.floor(Math.random() * boxArray[i].w * 0.9 + boxArray[i].w * 0.1+1); // size of splitting
+        var moveW = Math.floor(Math.random() * boxArray[i].w * 0.8 + boxArray[i].w * 0.1); // moving distance
+        box1.old = boxArray[i].num;
+        box1.num = max + 1;
+        box1.x = boxArray[i].x;
+        box1.y = boxArray[i].y;
+        box1.w = dW;
+        box1.h = boxArray[i].h;
+        box1.xf = boxArray[i].xf - moveW;
+        box1.yf = boxArray[i].yf;
+
+        box2.old = boxArray[i].num;
+        box2.num = max + 1;
+        box2.x = boxArray[i].x + dW;
+        box2.y = boxArray[i].y;
+        box2.w = boxArray[i].w - dW;
+        box2.h = boxArray[i].h;
+        box2.xf = boxArray[i].xf + dW + moveW;
+        box2.yf = boxArray[i].yf;
+
+        ref.push(box1.old);
+        boxArray.splice(i, 1, box1, box2);
+    }
+
+    function HorizontalCut(i) {
+        var box1 = new Box();
+        var box2 = new Box();
+        var dH = Math.floor(Math.random() * boxArray[i].h * 0.9 + boxArray[i].h * 0.1+1); // size of splitting
+        var moveH = Math.floor(Math.random() * boxArray[i].h * 0.8 + boxArray[i].h * 0.1); // moving distance
+        box1.old = boxArray[i].num;
+        box1.num = max + 1;
+        box1.x = boxArray[i].x;
+        box1.y = boxArray[i].y;
+        box1.w = boxArray[i].w;
+        box1.h = dH;
+        box1.xf = boxArray[i].xf;
+        box1.yf = boxArray[i].yf - moveH;
+
+        box2.old = boxArray[i].num;
+        box2.num = max + 1;
+        box2.x = boxArray[i].x;
+        box2.y = boxArray[i].y + dH;
+        box2.w = boxArray[i].w;
+        box2.h = boxArray[i].h - dH;
+        box2.xf = boxArray[i].xf;
+        box2.yf = boxArray[i].yf + dH + moveH;
+
+        ref.push(box1.old);
+        boxArray.splice(i, 1, box1, box2);
+    }
+
+
+
+
+
+
+    function Rewind() {
+        turnOn=true;
+    }
+
+
+
+
+</script>
+
+</body>
+</html>
