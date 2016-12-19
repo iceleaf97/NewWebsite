@@ -14,11 +14,31 @@
             top:5%;
             left: 5%;
         }
+        #info {
+            position: absolute;
+            width:30%;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 300%;
+            /*width: 50px;*/
+        }
+        #bar{
+            width: 100%;
+        }
+        #countBox{
+            width: 20%;
+        }
     </style>
 </head>
 <body onload="init()">
 <canvas id="myCanvas"></canvas>
-<button onclick="Rewind()">REWIND</button>
+<!--<button onclick="Rewind()">REWIND</button>-->
+
+<form id="info" style="text-align: center" oninput="x.value=parseInt(bar.value)">
+    <output id="setCount" name="x" for="a">50</output><br>
+    <input type="range" id="bar" value="50" min="50" max="600"><br>
+</form>
 <script>
     var canvas = document.getElementById('myCanvas');
     var cxt = canvas.getContext('2d');
@@ -26,15 +46,18 @@
     cxt.canvas.height = window.innerHeight;
 
     var easing = 0.05;
-    var size = Math.floor(window.innerHeight*0.15);
+    var size = Math.floor(window.innerHeight*0.25);
     var initX = canvas.width/2 - size/2;
-    var initY = canvas.height/2 - size/2;
+    var initY = canvas.height/2 - size/4;
     var max=1;
     var oneSplitCount=0;
+    var setCount=0;
 
     var ref=[];
     var boxArray=[];
-    var turnOn=false;
+    var turnRewindOn=false;
+    var turnSplitOn=false;
+    var animationOn=false;
 
     var Box = function(){
         this.old = null;
@@ -46,18 +69,21 @@
         this.xf = null;
         this.yf = null;
     };
+    var box0= new Box();
+    box0.old = 0;
+    box0.num = 1;
+    box0.x = initX;
+    box0.y = initY;
+    box0.w = size;
+    box0.h = size;
+    box0.xf = initX;
+    box0.yf = initY;
+    ref.push(box0.old);
+    boxArray.push(box0);
+
+
     function init() {
-        var box0= new Box();
-        box0.old = 0;
-        box0.num = 1;
-        box0.x = initX;
-        box0.y = initY;
-        box0.w = size;
-        box0.h = size;
-        box0.xf = initX;
-        box0.yf = initY;
-        ref.push(box0.old);
-        boxArray.push(box0);
+
 
         document.getElementById('myCanvas').addEventListener('click',BoxSplit , false);
         animate();
@@ -65,26 +91,62 @@
     }
 
     function BoxSplit(){
-        turnOn=false;
-        for (var i=0; i<600; i++){
-            if(boxArray.length<2){
-                DoubleSplit();
-            }else {
-                Split();
-            }
-        }
-
-
+        ref=[];
+        boxArray=[];
+        max=1;
+        ref.push(0);
+        boxArray.push(box0);
+        turnRewindOn=false;
+        turnSplitOn=true;
+        animationOn=true;
+        document.getElementById("bar").value = document.getElementById("setCount").value;
+        setCount = document.getElementById("bar").value;
 
     }
 
 
     function animate(){
-        cxt.clearRect(0, 0, canvas.width, canvas.height);
-        if(turnOn){
-            Assembly();
-            Remix();
+        if(animationOn){
+            document.getElementById("setCount").innerHTML = boxArray.length;
         }
+
+        cxt.clearRect(0, 0, canvas.width, canvas.height);
+
+        if(max == setCount){
+            var timer= setTimeout(function () {
+                    turnSplitOn=false;
+                    Assembly();
+                    Remix();
+            }, 2000);
+            if(boxArray.length==1){
+                animationOn=false;
+                document.getElementById("setCount").innerHTML = max;
+                max=1;
+                ref=[0];
+                turnRewindOn=false;
+
+            }
+        }
+
+
+        if(boxArray.length<setCount && turnSplitOn) {
+            if (boxArray.length == 1) {
+                Split();
+            } else {
+                for (var i = 0; i < boxArray.length - 1; i++) {
+                    if (boxArray[i].num == boxArray[i + 1].num) {
+                        var dx = Math.abs(boxArray[i].x - boxArray[i].xf);
+                        var dy = Math.abs(boxArray[i].y - boxArray[i].yf);
+                        if (dx < 0.1 && dy<1) {
+                            Split();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+
 
         drawRectangle();
         requestAnimationFrame(animate);
@@ -164,6 +226,7 @@
                 break;
             }
         }
+
         oneSplitCount++;
     }
 
@@ -183,8 +246,8 @@
     function VerticalCut(i) {
         var box1 = new Box();
         var box2 = new Box();
-        var dW = Math.floor(Math.random() * boxArray[i].w * 0.9 + boxArray[i].w * 0.1+1); // size of splitting
-        var moveW = Math.floor(Math.random() * boxArray[i].w * 0.8 + boxArray[i].w * 0.1); // moving distance
+        var dW = Math.floor(Math.random() * boxArray[i].w * 0.9 + boxArray[i].w * 0.1); // size of splitting
+        var moveW = Math.floor(Math.random() * boxArray[i].w*0.6); // moving distance
         box1.old = boxArray[i].num;
         box1.num = max + 1;
         box1.x = boxArray[i].x;
@@ -210,8 +273,8 @@
     function HorizontalCut(i) {
         var box1 = new Box();
         var box2 = new Box();
-        var dH = Math.floor(Math.random() * boxArray[i].h * 0.9 + boxArray[i].h * 0.1+1); // size of splitting
-        var moveH = Math.floor(Math.random() * boxArray[i].h * 0.8 + boxArray[i].h * 0.1); // moving distance
+        var dH = Math.floor(Math.random() * boxArray[i].h * 0.9 + boxArray[i].h * 0.1); // size of splitting
+        var moveH = Math.floor(Math.random() * boxArray[i].h*0.6); // moving distance
         box1.old = boxArray[i].num;
         box1.num = max + 1;
         box1.x = boxArray[i].x;
@@ -240,7 +303,8 @@
 
 
     function Rewind() {
-        turnOn=true;
+        turnRewindOn=true;
+        turnSplitOn=false;
     }
 
 
