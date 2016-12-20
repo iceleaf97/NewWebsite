@@ -65,6 +65,7 @@ function start() {
     });
   }
   var videoSource = videoSelect.value;
+  console.log(videoSelect);
   var constraints = {
     audio: false,
     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
