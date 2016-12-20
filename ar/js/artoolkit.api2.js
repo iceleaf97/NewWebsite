@@ -1,7 +1,7 @@
 (function() {
 	'use strict'
 
-
+    var video = document.createElement('video');
     var videoElement = document.querySelector('video');
     var videoSelect = document.querySelector('select#videoSource');
     var selectors = [videoSelect];
@@ -64,7 +64,6 @@
 
 
     videoSelect.onchange = start;
-    document.addEventListener('click', start, false);
 
     start();
 
@@ -1152,9 +1151,9 @@
 		var onSuccess = configuration.onSuccess;
 		var onError = configuration.onError || function(err) { console.error("ARController.getUserMedia", err); };
 
-		var video = document.createElement('video');
-		// var video = document.getElementById("video");
-		video.setAttribute("id", "video");
+
+
+
 
 		var initProgress = function() {
 			if (this.videoWidth !== 0) {
