@@ -108,6 +108,7 @@
     function animate(){
         if(animationOn){
             document.getElementById("setCount").innerHTML = boxArray.length;
+            document.getElementById('myCanvas').removeEventListener('click',BoxSplit , false);
         }
 
         cxt.clearRect(0, 0, canvas.width, canvas.height);
@@ -124,6 +125,7 @@
                 max=1;
                 ref=[0];
                 turnRewindOn=false;
+                document.getElementById('myCanvas').addEventListener('click',BoxSplit , false);
 
             }
         }
