@@ -17,7 +17,7 @@ function gotDevices(deviceInfos) {
   var values = selectors.map(function(select) {
     return select.value;
   });
-  console.log(deviceInfo);
+  console.log(deviceInfos);
   selectors.forEach(function(select) {
     while (select.firstChild) {
       select.removeChild(select.firstChild);
@@ -27,21 +27,13 @@ function gotDevices(deviceInfos) {
     var deviceInfo = deviceInfos[i];
     var option = document.createElement('option');
     option.value = deviceInfo.deviceId;
+    console.log(deviceInfo.label, i, deviceInfo.kind);
     if (deviceInfo.kind === 'videoinput') {
       option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
-      console.log(10000);
-    } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
-  selectors.forEach(function(select, selectorIndex) {
-    if (Array.prototype.slice.call(select.childNodes).some(function(n) {
-      return n.value === values[selectorIndex];
-    })) {
-      select.value = values[selectorIndex];
-    }
-  });
+
 }
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
