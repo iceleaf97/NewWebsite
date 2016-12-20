@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+
+
+  <title>Select audio and video sources</title>
+
+
+  <style>
+    div.select {
+      display: inline-block;
+      margin: 0 0 1em 0;
+    }
+    p.small {
+      font-size: 0.7em;
+    }
+    label {
+      width: 12em;
+      display: inline-block;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="container">
+
+
+
+
+    <div class="select">
+      <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
+
+    <video id="video" autoplay></video>
+
+
+  </div>
+
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="js/main.js"></script>
+
+  <script src="./js/ga.js"></script>
+</body>
+</html>
