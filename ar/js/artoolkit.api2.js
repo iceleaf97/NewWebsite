@@ -5,6 +5,8 @@
     var videoElement = document.querySelector('video');
     var videoSelect = document.querySelector('select#videoSource');
     var selectors = [videoSelect];
+    var constraints;
+    var videoSource;
 
     function gotDevices(deviceInfos) {
         // Handles being called several times to update labels. Preserve values.
@@ -50,9 +52,9 @@
                 track.stop();
             });
         }
-        var videoSource = videoSelect.value;
+        videoSource = videoSelect.value;
         console.log(videoSource);
-        var constraints = {
+        constraints = {
             audio: false,
             video: {deviceId: videoSource ? {exact: videoSource} : undefined}
         };
@@ -1146,12 +1148,12 @@
 	*/
 	ARController.getUserMedia = function(configuration) {
 		var facing =  'environment'|| configuration.facingMode;
-        // var facing =  configuration.facingMode || 'environment';
 
 		var onSuccess = configuration.onSuccess;
 		var onError = configuration.onError || function(err) { console.error("ARController.getUserMedia", err); };
 
 		var video = document.createElement('video');
+		// var video = document.getElementById("video");
 		video.setAttribute("id", "video");
 
 		var initProgress = function() {
@@ -1188,83 +1190,19 @@
 		};
 
 		var constraints = {};
-		var mediaDevicesConstraints = {};
-		if (configuration.width) {
-			mediaDevicesConstraints.width = configuration.width;
-			if (typeof configuration.width === 'object') {
-				if (configuration.width.max) {
-					constraints.maxWidth = configuration.width.max;
-				}
-				if (configuration.width.min) {
-					constraints.minWidth = configuration.width.max;
-				}
-			} else {
-				constraints.maxWidth = configuration.width;
-			}
-		}
-
-		if (configuration.height) {
-			mediaDevicesConstraints.height = configuration.height;
-			if (typeof configuration.height === 'object') {
-				if (configuration.height.max) {
-					constraints.maxHeight = configuration.height.max;
-				}
-				if (configuration.height.min) {
-					constraints.minHeight = configuration.height.max;
-				}
-			} else {
-				constraints.maxHeight = configuration.height;
-			}
-		}
-
-		mediaDevicesConstraints.facingMode = facing;
-		console.log(mediaDevicesConstraints.facingMode);
 
 		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 		var hdConstraints = {
-			audio: false,
-			video: {
-				mandatory: constraints
-		  	}
+            audio: false,
+            video: {deviceId: videoSource ? {exact: videoSource} : undefined}
 		};
 
-		if ( false ) {
-		// if ( navigator.mediaDevices || window.MediaStreamTrack) {
-			if (navigator.mediaDevices) {
-				navigator.mediaDevices.getUserMedia({
-					audio: false,
-					video: mediaDevicesConstraints
-				}).then(success, onError); 
-			} else {
-				MediaStreamTrack.getSources(function(sources) {
-					var facingDir = mediaDevicesConstraints.facingMode;
-					if (facing && facing.exact) {
-						facingDir = facing.exact;
-					}
-					for (var i=0; i<sources.length; i++) {
-						if (sources[i].kind === 'video' && sources[i].facing === facingDir) {
-							hdConstraints.video.mandatory.sourceId = sources[i].id;
-							break;
-						}
-					}
-					if (facing && facing.exact && !hdConstraints.video.mandatory.sourceId) {
-						onError('Failed to get camera facing the wanted direction');
-					} else {
-						if (navigator.getUserMedia) {
-							navigator.getUserMedia(hdConstraints, success, onError);
-						} else {
-							onError('navigator.getUserMedia is not supported on your browser');
-						}
-					}
-				});
-			}
-		} else {
 			if (navigator.getUserMedia) {
 				navigator.getUserMedia(hdConstraints, success, onError);
 			} else {
 				onError('navigator.getUserMedia is not supported on your browser');
 			}
-		}
+
 
 		return video;
 	};
