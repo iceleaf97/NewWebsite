@@ -29,7 +29,7 @@ function gotDevices(deviceInfos) {
     option.value = deviceInfo.deviceId;
     console.log(deviceInfo.label, i, deviceInfo.kind);
     if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || 'test camera ' + (videoSelect.length + 1);
+      option.text = deviceInfo.label+'test camera' || 'test camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
     }
   }
