@@ -142,7 +142,7 @@
                     if (boxArray[i].num == boxArray[i + 1].num) {
                         var dx = Math.abs(boxArray[i].x - boxArray[i].xf);
                         var dy = Math.abs(boxArray[i].y - boxArray[i].yf);
-                        if (dx < 0.1 && dy<1) {
+                        if (dx < 1 && dy<1) {
                             Split();
                             break;
                         }
