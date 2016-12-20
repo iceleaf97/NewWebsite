@@ -17,13 +17,13 @@ function gotDevices(deviceInfos) {
   var values = selectors.map(function(select) {
     return select.value;
   });
-  console.log(values);
+  console.log(deviceInfo);
   selectors.forEach(function(select) {
     while (select.firstChild) {
       select.removeChild(select.firstChild);
     }
   });
-  for (var i = 0; i !== deviceInfos.length; ++i) {
+  for (var i = 0; i !== deviceInfos.length; i++) {
     var deviceInfo = deviceInfos[i];
     var option = document.createElement('option');
     option.value = deviceInfo.deviceId;
