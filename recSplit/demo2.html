@@ -125,7 +125,10 @@
                 max=1;
                 ref=[0];
                 turnRewindOn=false;
-                document.getElementById('myCanvas').addEventListener('click',BoxSplit , false);
+                setTimeout(function () {
+                    document.getElementById('myCanvas').addEventListener('click',BoxSplit , false);
+                },2000);
+
 
             }
         }
