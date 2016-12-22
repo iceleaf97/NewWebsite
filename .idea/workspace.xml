@@ -56,8 +56,8 @@
       <file leaf-file-name="LowPolyHelicopter.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/LowPolyHelicopter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+            <state relative-caret-position="589">
+              <caret line="31" column="28" lean-forward="false" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -66,8 +66,8 @@
       <file leaf-file-name="LowPolyHelicopter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="223" column="37" lean-forward="true" selection-start-line="223" selection-start-column="37" selection-end-line="223" selection-end-column="37" />
+            <state relative-caret-position="155">
+              <caret line="214" column="18" lean-forward="true" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>render</find>
       <find>webGLRenderer</find>
+      <find>render</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,12 +209,12 @@
       <option name="presentableId" value="Default" />
       <updated>1482395437898</updated>
       <workItem from="1482395439067" duration="308000" />
-      <workItem from="1482395773096" duration="1932000" />
+      <workItem from="1482395773096" duration="2040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2240000" />
+    <option name="totallyTimeSpent" value="2348000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="884" y="0" width="1053" height="1047" extended-state="0" />
@@ -289,10 +289,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SVGextrude/SVGextrude.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="26" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="223" column="37" lean-forward="true" selection-start-line="223" selection-start-column="37" selection-end-line="223" selection-end-column="37" />
+        <state relative-caret-position="155">
+          <caret line="214" column="18" lean-forward="true" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -305,18 +313,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SVGextrude/SVGextrude.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="26" column="28" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="26" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/LowPolyHelicopter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        <state relative-caret-position="589">
+          <caret line="31" column="28" lean-forward="false" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
           <folding />
         </state>
       </provider>
