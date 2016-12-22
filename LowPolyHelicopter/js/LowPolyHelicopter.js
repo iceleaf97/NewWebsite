@@ -205,7 +205,7 @@ function createOrbit() {
     control.target.set(0, 0, 0);
     control.maxPolarAngle = Math.PI/2;
     control.autoRotate = true;
-    control.update();
+    // control.update();
 }
 var dt1 = 0;
 var dt2 = 0;
