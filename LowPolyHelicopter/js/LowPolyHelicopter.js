@@ -194,7 +194,7 @@ function render() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     // renderer.setClearColor(0x9ad3de);
     renderer.shadowMap.enabled = true;
-    renderer.render(scene, camera);
+    // renderer.render(scene, camera);
     container = document.getElementById('scene');
     container.appendChild(renderer.domElement);
 }
