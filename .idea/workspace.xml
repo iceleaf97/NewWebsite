@@ -36,8 +36,8 @@
       <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BEE/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="38">
+              <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -56,8 +56,8 @@
       <file leaf-file-name="LowPolyHelicopter.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/LowPolyHelicopter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+            <state relative-caret-position="285">
+              <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>webGLRenderer</find>
       <find>render</find>
+      <find>webGLRenderer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,12 +209,12 @@
       <option name="presentableId" value="Default" />
       <updated>1482395437898</updated>
       <workItem from="1482395439067" duration="308000" />
-      <workItem from="1482395773096" duration="1859000" />
+      <workItem from="1482395773096" duration="1932000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2167000" />
+    <option name="totallyTimeSpent" value="2240000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="884" y="0" width="1053" height="1047" extended-state="0" />
@@ -289,10 +289,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="223" column="37" lean-forward="true" selection-start-line="223" selection-start-column="37" selection-end-line="223" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BEE/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="38">
+          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="5" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -305,18 +313,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="223" column="37" lean-forward="true" selection-start-line="223" selection-start-column="37" selection-end-line="223" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/LowPolyHelicopter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+        <state relative-caret-position="285">
+          <caret line="15" column="38" lean-forward="true" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
           <folding />
         </state>
       </provider>
