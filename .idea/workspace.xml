@@ -66,8 +66,8 @@
       <file leaf-file-name="LowPolyHelicopter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="210" column="12" lean-forward="true" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
+            <state relative-caret-position="193">
+              <caret line="207" column="14" lean-forward="false" selection-start-line="207" selection-start-column="14" selection-end-line="207" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -209,12 +209,12 @@
       <option name="presentableId" value="Default" />
       <updated>1482395437898</updated>
       <workItem from="1482395439067" duration="308000" />
-      <workItem from="1482395773096" duration="2279000" />
+      <workItem from="1482395773096" duration="2507000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2587000" />
+    <option name="totallyTimeSpent" value="2815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="884" y="0" width="1053" height="1047" extended-state="0" />
@@ -315,8 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LowPolyHelicopter/js/LowPolyHelicopter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="210" column="12" lean-forward="true" selection-start-line="210" selection-start-column="12" selection-end-line="210" selection-end-column="12" />
+        <state relative-caret-position="193">
+          <caret line="207" column="14" lean-forward="false" selection-start-line="207" selection-start-column="14" selection-end-line="207" selection-end-column="14" />
           <folding />
         </state>
       </provider>
