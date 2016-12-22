@@ -36,8 +36,8 @@
       <file leaf-file-name="youtubeIn3D.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html3D/youtubeIn3D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="437">
+              <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -156,12 +156,12 @@
       <option name="presentableId" value="Default" />
       <updated>1482395437898</updated>
       <workItem from="1482395439067" duration="308000" />
-      <workItem from="1482395773096" duration="2807000" />
+      <workItem from="1482395773096" duration="2904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3115000" />
+    <option name="totallyTimeSpent" value="3212000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="884" y="0" width="1053" height="1047" extended-state="0" />
@@ -280,8 +280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html3D/youtubeIn3D.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="437">
+          <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
           <folding />
         </state>
       </provider>
