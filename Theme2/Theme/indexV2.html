@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web3D showcase</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+
+    <link rel="stylesheet" href="zebra_css/reset.css" type="text/css">
+    <link rel="stylesheet" href="zebra_css/zebra_dialog.css" type="text/css">
+    <link rel="stylesheet" href="zebra_css/style.css" type="text/css">
+    <link rel="stylesheet" href="zebra_css/ir_black.css" type="text/css">
+
+
+
+
+    <style>
+        body{
+            background-color: #000;
+        }
+        h1{
+            color: #dedede;
+        }
+        img{
+            width: 100%;
+            height: auto;
+        }
+        .boxTitle{
+            background-color: #777;
+        }
+        .boxTitle h2{
+            background-color: #333;
+            border: double;
+            border-color: #FFF;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container ">
+    <header class="codrops-header">
+        <h1>Web3D Showcase <span>enjoy virtual reality on web</span></h1>
+    </header>
+
+    <section class="grid-wrap">
+        <ul class="grid swipe-down" id="grid">
+            <li class="title-box boxTitle">
+                <h2 >3D environment created by <a style="color: #0ff;" href="https://threejs.org/">three.js</a></h2>
+            </li>
+            <li><a id="bee"><img src="img/Bee.png" alt="dummy"><h3>Bee Concept</h3></a></li>
+            <li><a id="snowGirl"><img src="img/snowGirl.png" alt="dummy"><h3>Snow Girl</h3></a></li>
+            <li><a id="car"><img src="img/car2.jpg" alt="dummy"><h3>A fantastic title</h3></a></li>
+            <li><a id="ar"><img src="img/sophie.jpg" alt="dummy"><h3>A fantastic title</h3></a></li>
+
+        </ul>
+    </section>
+</div><!-- /container -->
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/colorfinder-1.1.js"></script>
+<script src="js/gridScrollFx.js"></script>
+
+<script type="text/javascript" src="zebra_js/jquery-1.12.0.js"></script>
+<script type="text/javascript" src="zebra_js/highlight.js"></script>
+<script type="text/javascript" src="zebra_js/zebra_dialog.js"></script>
+<script type="text/javascript" src="zebra_js/main.js"></script>
+
+
+<script>
+    new GridScrollFx( document.getElementById( 'grid' ), {
+        viewportFactor : 0.4
+    } );
+
+
+    hljs.initHighlightingOnLoad();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Pen</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:500' rel='stylesheet' type='text/css'>
+
+  <style>
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+</style>
+
+    <style>
+html{height:100%; width:100%;}
+
+body{
+  height:100%;
+  width:100%;
+  background-image: -webkit-gradient(
+    linear,
+	  80 bottom,
+	  left 60,
+	  color-stop(0, rgb(91,135,115)),
+	  color-stop(0.57, rgb(66,110,110)));
+  font-family:'lato';
+  animation:bgfade 7s;
+  -webkit-animation:bgfade 7s; /* Safari and Chrome */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.desc
+{
+  text-align: center;
+  font-weight: normal;
+  width: 120px;
+  margin: 2px;
+  visibility:hidden;
+}
+
+div:hover .desc {
+  visibility:visible;
+}
+div.img{
+  margin: 155px 5px 5px 5px;
+  padding:25px;
+  box-sizing:border-box;
+  background:#f1f1f1;
+  line-height:0px;
+  height: auto;
+  width: auto;
+  float: left;
+  text-align: center;
+  -webkit-transition:all 0.5s ease;
+  -moz-transition:all 0.5s ease; 
+  -o-transition:all 0.5s ease; 
+  transition:all 0.5s ease;
+  border-radius:4px;
+}	
+div:hover{line-height:30px;font-size:16px;}
+div.img img
+{
+  display: inline;
+  margin: 3px;
+}
+
+@keyframes bgfade
+{
+0%   {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes bgfade /* Safari and Chrome */
+{
+0%   {opacity:0;}
+100% {opacity:1;}
+}
+</style>
+
+  <script src="js/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="screen">
+<div class="Bol"></div>
+</div>
+
+<div class="img" style="margin-left:10%;">
+  <a target="_blank" href=""><img src="http://tympanus.net/Development/BookBlock/images/demo1/1.jpg" alt="Klematis" width="110" height="90"/></a>
+ <div class="desc"> sssssssssssssss
+   ssssssssssssssss
+   ssssssssssss
+   sssssssssssssss
+   ssssssssssssssss
+   ssssssssssssssss
+   sssssssssssssssss
+   </div>
+</div>
+<div class="img">
+  <a target="_blank" href=""><img src="http://tympanus.net/Development/BookBlock/images/demo1/2.jpg" alt="Klematis" width="110" height="90"/></a>
+ <div class="desc">image Description</div>
+</div>
+<div class="img">
+  <a target="_blank" href=""><img src="http://tympanus.net/Development/BookBlock/images/demo1/3.jpg" alt="Klematis" width="110" height="90"/></a>
+ <div class="desc">image Description</div>
+</div>
+<div class="img">
+  <a target="_blank" href="klematis4_big.htm"><img src="http://tympanus.net/Development/BookBlock/images/demo3/5.jpg" alt="Klematis" width="110" height="90"/></a>
+ <div class="desc">image Description</div>
+</div>
+
+  <script src='http://codepen.io/assets/libs/fullpage/none.js'></script>
+
+</body>
+
+</html>
