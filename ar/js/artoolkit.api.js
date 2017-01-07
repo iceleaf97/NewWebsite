@@ -1161,25 +1161,26 @@
 					video: mediaDevicesConstraints
 				}).then(success, onError);
 			} else {
-                MediaStreamTrack.getSources(function(sources) {
-                    var newConstraints;
-                    var facingDir = mediaDevicesConstraints.facingMode;
-                    if (facing && facing.exact) {
-                        facingDir = facing.exact;
-                    }
-                    for (var i=0; i<sources.length; i++) {
-
-                        if (sources[i].kind === 'video' && sources[i].facing === facingDir) {
-                            newConstraints = {
-                                audio: false,
-                                video: {
-                                    optional: [{sourceId: sources[i].id}]
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    navigator.getUserMedia(newConstraints, success, onError);
+				MediaStreamTrack.getSources(function(sources) {
+					var facingDir = mediaDevicesConstraints.facingMode;
+					if (facing && facing.exact) {
+						facingDir = facing.exact;
+					}
+					for (var i=0; i<sources.length; i++) {
+						if (sources[i].kind === 'video' && sources[i].facing === facingDir) {
+							hdConstraints.video.mandatory.sourceId = sources[i].id;
+							break;
+						}
+					}
+					if (facing && facing.exact && !hdConstraints.video.mandatory.sourceId) {
+						onError('Failed to get camera facing the wanted direction');
+					} else {
+						if (navigator.getUserMedia) {
+							navigator.getUserMedia(hdConstraints, success, onError);
+						} else {
+							onError('navigator.getUserMedia is not supported on your browser');
+						}
+					}
 				});
 			}
 		} else {
