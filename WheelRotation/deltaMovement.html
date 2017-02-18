@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WheelRotation</title>
+    <style>
+        body{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body >
+<canvas id="myCanvas">
+
+</canvas>
+
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var cxt = canvas.getContext('2d');
+    cxt.canvas.width = window.innerWidth;
+    cxt.canvas.height = window.innerHeight;
+
+    var x, y;
+    var nx, ny;
+    var dx, dy;
+    var totalX=0;
+    var clickX, clickY
+    var day ;
+    var timeReal;
+    var timeSave;
+    var centerX = window.innerWidth/2;
+    var centerY = window.innerHeight/2;
+    var timer=false;
+
+
+    window.addEventListener('load', init, false);
+
+    function drawCircle() {
+        cxt.beginPath();
+        cxt.arc(centerX, centerY, 10,  0, Math.PI*2, false);
+        cxt.fillStyle='blue';
+        cxt.fill();
+    }
+
+
+    function init(){
+        drawCircle();
+
+        document.addEventListener('mousedown', turnOn, false);
+        document.addEventListener('mousemove', addValue, false);
+        document.addEventListener('mouseup', turnOff, false);
+
+    }
+
+    function resetValue() {
+        x=event.clientX;
+        day = new Date();
+        timeSave = day.getTime();
+    }
+
+    function addValue(){
+        day = new Date();
+        timeReal=day.getTime();
+        if(timeReal-timeSave >100){
+            nx = event.clientX;
+            dx = nx-x;
+            totalX += dx;
+            resetValue();
+            console.log(totalX);
+        }
+    }
+
+    function turnOn(){
+        resetValue();
+        document.addEventListener('mousemove', addValue, false);
+    }
+
+    function turnOff(){
+        document.removeEventListener('mousemove', addValue, false);
+    }
+
+
+//    function init() {
+//        drawCircle();
+//
+//        document.addEventListener('mousedown', readTime,false);
+//        document.addEventListener('mouseup', stopRead, false);
+//    }
+
+
+    function stopRead(){
+        timer =false;
+    }
+
+    function readTime() {
+        day = new Date();
+        timeSave = day.getTime();
+        timer = true;
+        animate();
+    }
+
+    function animate(){
+        day = new Date();
+        timeReal = day.getTime();
+        if(timeReal > timeSave+1000){
+            console.log(timeReal);
+            timeSave = timeReal;
+        }
+
+        if(timer){
+            requestAnimationFrame(animate);
+        }
+
+    }
+
+
+</script>
+
+</body>
+</html>

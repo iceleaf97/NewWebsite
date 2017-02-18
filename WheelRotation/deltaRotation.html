@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>deltaDegreeSum</title>
+    <style>
+        body{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var cxt = canvas.getContext('2d');
+    cxt.canvas.width = window.innerWidth;
+    cxt.canvas.height = window.innerHeight;
+
+    var picture = new Image();
+    picture.src = "./wheel.png";
+    var imageSize = Math.min(canvas.width, canvas.height);
+
+    var centerX = window.innerWidth/2;
+    var centerY = window.innerHeight/2;
+
+    var ox, oy;
+    var nx, ny;
+    var date;
+    var originTime, realTime;
+    var vectorDot;
+    var deltaRad, deltaDegree;
+    var totalDegree=0;
+    var totalRad=0;
+
+
+
+
+
+    window.addEventListener('load', init, false);
+
+    function drawCircle(){
+        // reference circle
+//        cxt.beginPath();
+//        cxt.arc(centerX, centerY, 10, 0, Math.PI*2, false);
+//        cxt.fillStyle='green';
+//        cxt.fill();
+
+        // reference line
+//        cxt.moveTo(centerX, 0);
+//        cxt.lineTo(centerX, window.innerHeight);
+//        cxt.stroke();
+
+        cxt.clearRect(0, 0, canvas.width, canvas.height);
+        cxt.translate(centerX, centerY);
+        cxt.drawImage(picture, -imageSize/4, -imageSize/4, imageSize/2, imageSize/2);
+        cxt.translate(-centerX, -centerY);
+
+
+
+
+    }
+
+    function init(){
+        drawCircle();
+
+        document.addEventListener('mousedown', turnOn, false);
+        document.addEventListener('mouseup', turnOff, false);
+    }
+
+    function turnOn() {
+        resetOrigin();
+        document.addEventListener('mousemove', sumDegree, false);
+    }
+
+    function turnOff() {
+        document.removeEventListener('mousemove', sumDegree, false);
+    }
+
+
+
+
+    function resetOrigin(){
+        ox = event.clientX-centerX;
+        oy = event.clientY-centerY;
+        date = new Date();
+        originTime = date.getTime();
+    }
+
+    function sumDegree(){
+        date = new Date();
+        realTime = date.getTime();
+        if(realTime-originTime>10){
+            nx = event.clientX - centerX;
+            ny = event.clientY - centerY;
+
+            var dx = nx-ox;
+            var dy = ny-oy;
+
+            // 用內積取角度
+//            vectorDot= ox*nx + oy*ny;
+//            if(nx >=0 && ny <= 0){
+//                if(Math.abs(ny/nx) < Math.abs(oy/ox)){
+//                    deltaRad =Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }else{
+//                    deltaRad = -Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }
+//            }else if(nx<0 && ny <= 0){
+//                if(Math.abs(ny/nx) > Math.abs(oy/ox)){
+//                    deltaRad =Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }else {
+//                    deltaRad = -Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }
+//            }else if(nx<0 && ny > 0){
+//                if(Math.abs(ny/nx) < Math.abs(oy/ox)){
+//                    deltaRad =Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }else {
+//                    deltaRad = -Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }
+//            }else if(nx>=0 && ny>0){
+//                if(Math.abs(ny/nx) > Math.abs(oy/ox)){
+//                    deltaRad =Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }else{
+//                    deltaRad = -Math.acos(vectorDot/ (Math.hypot(ox, oy) * Math.hypot(nx, ny)));
+//                }
+//            }
+
+
+            //  用積分取角度
+            if(nx >=0 && ny <= 0){
+                if(Math.abs(ny/nx) < Math.abs(oy/ox)){
+                    deltaRad =Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }else{
+                    deltaRad = -Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }
+            }else if(nx<0 && ny <= 0){
+                if(Math.abs(ny/nx) > Math.abs(oy/ox)){
+                    deltaRad =Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }else {
+                    deltaRad = -Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }
+            }else if(nx<0 && ny > 0){
+                if(Math.abs(ny/nx) < Math.abs(oy/ox)){
+                    deltaRad =Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }else {
+                    deltaRad = -Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }
+            }else if(nx>=0 && ny>0){
+                if(Math.abs(ny/nx) > Math.abs(oy/ox)){
+                    deltaRad =Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }else{
+                    deltaRad = -Math.hypot(dx, dy)/ Math.hypot(ox, oy);
+                }
+            }
+
+
+
+
+            deltaDegree = deltaRad*180/Math.PI;
+            totalRad += deltaRad;
+            totalDegree += deltaDegree;
+            resetOrigin();
+            console.log(totalDegree);
+
+
+            cxt.clearRect(0, 0, canvas.width, canvas.height);
+            cxt.translate(centerX, centerY);
+            cxt.rotate(totalRad);
+            cxt.drawImage(picture, -imageSize/4, -imageSize/4, imageSize/2, imageSize/2);
+            cxt.rotate(-totalRad);
+            cxt.translate(-centerX, -centerY);
+
+
+
+
+        }
+    }
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

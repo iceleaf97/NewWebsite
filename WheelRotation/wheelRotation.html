@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WheelRotation</title>
+    <style>
+        body{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body >
+<canvas id="myCanvas">
+
+</canvas>
+
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var cxt = canvas.getContext('2d');
+    cxt.canvas.width = window.innerWidth;
+    cxt.canvas.height = window.innerHeight;
+
+    var x, y;
+    var nx, ny;
+    var clickX, clickY;
+    var centerX = window.innerWidth/2;
+    var centerY = window.innerHeight/2;
+
+
+    window.addEventListener('load', init, false);
+
+    function drawCircle() {
+        cxt.beginPath();
+        cxt.arc(centerX, centerY, 10,  0, Math.PI*2, false);
+        cxt.fillStyle='blue';
+        cxt.fill();
+    }
+
+
+    function init() {
+        console.log("this is test!");
+        drawCircle();
+
+
+        document.addEventListener("mousedown", showXYposition,false);
+        document.addEventListener("mouseup", stopDegree, false);
+
+    }
+
+    function stopDegree() {
+        document.removeEventListener("mousemove", showDegree, false);
+    }
+
+    function showXYposition(event) {
+        event.preventDefault();
+
+        x = event.clientX;
+        y = event.clientY;
+        clickX = event.clientX-centerX;
+        clickY = event.clientY-centerY;
+
+        console.log("clickX= "+clickX+" , clickY= "+clickY);
+        document.addEventListener("mousemove", showDegree, false);
+
+    }
+
+    function showDegree() {
+        x = event.clientX;
+        y = event.clientY;
+        nx = event.clientX-centerX;
+        ny = event.clientY-centerY;
+        var originVector_L=Math.sqrt( clickX * clickX + clickY * clickY );
+        var finalVector_L=Math.sqrt( nx * nx + ny * ny);
+        var dot=nx*clickX + ny*clickY;
+        var rad = Math.acos(dot / (originVector_L*finalVector_L) );
+        var degree = rad*180/Math.PI;
+        console.log(degree);
+
+    }
+
+</script>
+
+</body>
+</html>
