@@ -8,9 +8,13 @@
             margin: 0 auto;
             overflow: hidden;
         }
+        input{
+            position: absolute;
+        }
     </style>
 </head>
 <body>
+<input type="number" id="degree" value="0">
 <canvas id="myCanvas"></canvas>
 <script>
     var canvas = document.getElementById("myCanvas");
@@ -162,6 +166,8 @@
             totalDegree += deltaDegree;
             resetOrigin();
             console.log(totalDegree);
+
+            document.getElementById("degree").setAttribute("value", totalDegree);
 
 
             cxt.clearRect(0, 0, canvas.width, canvas.height);
